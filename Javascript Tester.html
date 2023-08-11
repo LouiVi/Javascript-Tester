@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+</head>
+	
+<script>
+    //Called after application is started.
+    function OnStart()
+    {
+        app.ShowPopup( "HTML Rocks!" );
+    }
+    
+    ImageToCanvas = function( image ) 
+			{
+				var width = image.width;
+				var height = image.height;
+
+				var canvas = document.createElement( 'canvas' );
+
+				canvas.width = width;
+				canvas.height = height;
+
+				//alert(canvas.toDataURL("image/png"));
+
+				var context = canvas.getContext( '2d' );
+				context.drawImage( image, 0, 0, width, height );
+
+				return canvas;
+			};
+
+CreateCanvas = function(container, image)
+{
+	var elem = ImageToCanvas(image);
+	document.getElementById(container).appendChild(elem);
+};
+</script>
+
+<style>
+	body { background-color: #ffffff; }
+    .hello 
+    { 
+        font-size: 42; 
+        width: 100%;
+        margin-top: 2em;
+        text-align: center;
+        color: blue;
+    }
+</style>
+
+<body onload="app.Start();CreateCanvas('cont', document.getElementById( 'img1'))">
+<div id="cont">
+	<div class=hello> Hello World! </div>
+	</div>
+	<img id="img1" src="Img/90.jpg" height="200">
+</body>
+</html>
